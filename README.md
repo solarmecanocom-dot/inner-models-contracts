@@ -132,5 +132,5 @@ Each token has attributes: AI Model, Family, Question, Pure Pipeline, Question N
 When the trigger fires, all token URIs switch to `destroyed.json` — a single shared metadata showing the art no longer exists.
 
 ## License
-
+ 
 MIT
