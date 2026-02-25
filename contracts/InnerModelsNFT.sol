@@ -17,7 +17,7 @@ contract InnerModelsNFT is ERC721, Ownable {
     bool public artDestroyed;
     string private _destroyedURI;
 
-    uint256 public constant MAX_SUPPLY = 264;
+    uint256 public constant MAX_SUPPLY = 297;
     uint256 public totalMinted;
 
     event PoolManagerSet(address indexed poolManager);
