@@ -10,7 +10,8 @@
 
 ## What is this?
 
-We asked 27 AI models 11 questions about consciousness, death, beauty, love, and loneliness. Each answered freely, then drew its own self-portrait. No human artist. No curation.
+We asked 27 AI models 11 questions about consciousness, death, beauty, love, and loneliness. Each answered freely, then drew its own self-portrait. 
+No human artist. No curation.
 
 The result is a collection of 297 unique artworks — and an economic model where **nobody loses money. Ever.**
 
@@ -99,28 +100,8 @@ Your ETH is held on-chain in the **Guarantee Pool**. At trigger, every holder ge
                     | Chainlink Oracle |
                     |  ETH/USD + L2    |
                     +------------------+
-```
 
-## Development
 
-```bash
-# Install dependencies
-npm install
-
-# Run tests (60 passing)
-npx hardhat test
-
-# Deploy to Base Sepolia (testnet)
-npx hardhat run scripts/deploy.js --network baseSepolia
-
-# Deploy to Base mainnet
-npx hardhat run scripts/deploy.js --network base
-```
-
-Requires a `.env` file with:
-```
-DEPLOYER_PRIVATE_KEY=your_private_key
-BASESCAN_API_KEY=your_api_key  # optional, for verification
 ```
 
 ## Metadata
