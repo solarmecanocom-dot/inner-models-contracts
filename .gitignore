@@ -18,6 +18,11 @@ deployments-*.json
 .vscode/
 .idea/
 
+# Misc
+.netlify/
+gemini_analysis.py
+audit-upload/
+
 # OS
 .DS_Store
 Thumbs.db
