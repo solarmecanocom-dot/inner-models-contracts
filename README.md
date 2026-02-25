@@ -72,7 +72,7 @@ Your ETH is held on-chain in the **Guarantee Pool**. At trigger, every holder ge
 - **60 tests passing** — full coverage of minting, trading, trigger, distribution
 - **Dependencies**: OpenZeppelin v5.4, Chainlink v1.5
 - **Oracle**: Chainlink ETH/USD with L2 sequencer uptime check
-- **Anti-manipulation**: 1-hour trigger cooldown with price re-verification
+- **Anti-manipulation**: 15-minute trigger cooldown with price re-verification
 
 ## Architecture
 
@@ -107,7 +107,7 @@ Your ETH is held on-chain in the **Guarantee Pool**. At trigger, every holder ge
 # Install dependencies
 npm install
 
-# Run tests (55 passing)
+# Run tests (60 passing)
 npx hardhat test
 
 # Deploy to Base Sepolia (testnet)
