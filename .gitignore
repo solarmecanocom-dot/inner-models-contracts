@@ -15,3 +15,5 @@ Thumbs.db
 *.key
 *.pem
 *.secret
+.wallet.json
+metadata_ipfs/
