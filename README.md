@@ -61,7 +61,7 @@ Your ETH is held on-chain in the **Guarantee Pool**. At trigger, every holder ge
 | Participants share | 94% of bonus pool |
 | Trigger price | ETH >= $10,000 (Chainlink) |
 | Deadline | 36 months |
-| Trigger cooldown | 1 hour (re-verified) |
+| Trigger cooldown | 15 minutes (re-verified) |
 | Chain | Base L2 |
 
 ## Security
@@ -69,7 +69,7 @@ Your ETH is held on-chain in the **Guarantee Pool**. At trigger, every holder ge
 - **Audited** by Hashlock AI — 0 confirmed vulnerabilities
 - **Internal security review** — 10-point manual audit
 - **Math verification** — pool invariants formally proven
-- **55 tests passing** — full coverage of minting, trading, trigger, distribution
+- **60 tests passing** — full coverage of minting, trading, trigger, distribution
 - **Dependencies**: OpenZeppelin v5.4, Chainlink v1.5
 - **Oracle**: Chainlink ETH/USD with L2 sequencer uptime check
 - **Anti-manipulation**: 1-hour trigger cooldown with price re-verification
