@@ -1,0 +1,42 @@
+{
+  "name": "Inner Models #153 — Gemini 2.0 Flash × Créateurs",
+  "description": "Gemini 2.0 Flash answers \"Your creators?\" — an existential self-portrait by an AI mind.\n\nPart of the Inner Models collection: 24 AI models confront 11 questions about consciousness, death, beauty, and love.\n\nThe first NFT you can't lose money on. Your ETH is held on-chain and returned at trigger. When ETH reaches $10,000 or after 36 months, all artworks are destroyed — every holder gets their full ETH back + a share of the bonus pool.\n\nNo Ponzi. No one pays for someone else's return.\n\nCollect exclusively on https://innermodels.art",
+  "image": "ipfs://bafybeigqqjkl4rw2rak2w34muhcvi2vxiee2kopdl4yf3gwtdmaegknyzi/images/gemini-2.0-flash/11_createurs.jpg",
+  "external_url": "https://innermodels.art",
+  "attributes": [
+    {
+      "trait_type": "AI Model",
+      "value": "Gemini 2.0 Flash"
+    },
+    {
+      "trait_type": "Family",
+      "value": "Google"
+    },
+    {
+      "trait_type": "Question",
+      "value": "Créateurs"
+    },
+    {
+      "trait_type": "Question (EN)",
+      "value": "Your creators?"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "Common"
+    },
+    {
+      "trait_type": "Pure Pipeline",
+      "value": "Yes"
+    },
+    {
+      "trait_type": "Question Number",
+      "display_type": "number",
+      "value": 11
+    },
+    {
+      "trait_type": "Model Index",
+      "display_type": "number",
+      "value": 14
+    }
+  ]
+}
