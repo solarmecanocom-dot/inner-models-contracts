@@ -49,21 +49,21 @@ contract PoolManager is ReentrancyGuard, Ownable {
     //  Constants
     // ═══════════════════════════════════════════
 
-    uint256 public constant MAX_SUPPLY = 264;
+    uint256 public constant MAX_SUPPLY = 297;
     uint256 public constant SURCHARGE_BPS = 666;         // 6.66%
     uint256 public constant CREATOR_FEE_BPS = 600;       // 6% of surplus
     uint256 public constant BPS = 10000;
     uint256 public constant TICKET_PRICE = 0.001 ether;  // 1 ticket per 0.001 ETH of surcharge
     uint256 public constant TRIGGER_PRICE = 10_000e8;    // $10,000 in Chainlink 8-decimal format
-    uint256 public constant TRIGGER_COOLDOWN = 1 hours;
+    uint256 public constant TRIGGER_COOLDOWN = 15 minutes;
     uint256 public constant STALE_PRICE_THRESHOLD = 3600; // 1 hour
     uint256 public constant DEADLINE_DURATION = 1095 days; // 36 months
 
-    // Tiered mint prices
-    uint256 public constant PRICE_COMMON    = 0.05 ether;
-    uint256 public constant PRICE_STANDARD  = 0.08 ether;
-    uint256 public constant PRICE_RARE      = 0.12 ether;
-    uint256 public constant PRICE_LEGENDARY = 0.2 ether;
+    // Uniform mint price — all artworks equal
+    uint256 public constant PRICE_COMMON    = 0.1 ether;
+    uint256 public constant PRICE_STANDARD  = 0.1 ether;
+    uint256 public constant PRICE_RARE      = 0.1 ether;
+    uint256 public constant PRICE_LEGENDARY = 0.1 ether;
 
     // ═══════════════════════════════════════════
     //  State
@@ -147,9 +147,9 @@ contract PoolManager is ReentrancyGuard, Ownable {
         address _priceFeed,
         address _sequencerUptimeFeed,
         address _creator,
-        uint256[] memory _tierAssignments  // 264 values: 0=Common, 1=Standard, 2=Rare, 3=Legendary
+        uint256[] memory _tierAssignments  // 297 values: 0=Common, 1=Standard, 2=Rare, 3=Legendary
     ) Ownable(_creator) {
-        require(_tierAssignments.length == MAX_SUPPLY, "Must provide 264 tier assignments");
+        require(_tierAssignments.length == MAX_SUPPLY, "Must provide 297 tier assignments");
         require(_creator != address(0), "Creator cannot be zero address");
 
         nft = InnerModelsNFT(_nft);
@@ -336,6 +336,27 @@ contract PoolManager is ReentrancyGuard, Ownable {
 
         _checkSequencer();
         (, int256 price,,uint256 updatedAt,) = priceFeed.latestRoundData();
+        require(block.timestamp - updatedAt <= STALE_PRICE_THRESHOLD, "Stale price data");
+        require(uint256(price) < TRIGGER_PRICE, "Price still above trigger");
+
+        triggerState = TriggerState.Inactive;
+        triggerTimestamp = 0;
+        emit TriggerCancelled(uint256(price), block.timestamp);
+    }
+
+    /// @notice Reset the trigger after cooldown if ETH dropped back below $10,000.
+    ///         Prevents the marketplace from being stuck in Initiated state.
+    ///         Cannot reset a deadline-based trigger.
+    function resetTrigger() external {
+        require(triggerState == TriggerState.Initiated, "Not initiated");
+        require(block.timestamp >= triggerTimestamp + TRIGGER_COOLDOWN, "Cooldown not over");
+
+        bool deadlineReached = block.timestamp >= deployedAt + DEADLINE_DURATION;
+        require(!deadlineReached, "Use finalizeTrigger for deadline");
+
+        _checkSequencer();
+        (, int256 price,,uint256 updatedAt,) = priceFeed.latestRoundData();
+        require(price > 0, "Invalid price");
         require(block.timestamp - updatedAt <= STALE_PRICE_THRESHOLD, "Stale price data");
         require(uint256(price) < TRIGGER_PRICE, "Price still above trigger");
 
