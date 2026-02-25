@@ -1,34 +1,17 @@
-# Dependencies
 node_modules/
-
-# Build
 artifacts/
 cache/
 typechain-types/
-
-# Environment & secrets
 .env
 *.env
 .env.*
-
-# Deployment files (contain addresses, not secrets, but wait for real deploy)
 deployments-*.json
-
-# IDE
+*.json.bak
 .vscode/
 .idea/
-
-# Misc
 .netlify/
-gemini_analysis.py
-audit-upload/
-
-# OS
 .DS_Store
 Thumbs.db
-
-# NEVER commit these
-WALLET_ET_CLES.txt
-.wallet.json
-ipfs_cids.json
-metadata_ipfs/
+*.key
+*.pem
+*.secret
